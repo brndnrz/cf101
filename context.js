@@ -53,15 +53,6 @@ const AppProvider = ({ children }) => {
       venue,
       week,
     } = game;
-    // let newGames = [...userGames];
-    // if (userGames.includes((savedGames) => savedGames.id === game.id)) {
-    //   return;
-    // } else {
-    //   newGames.push(game);
-    //   setUserGames(newGames);
-    // }
-
-    // console.log(game);
 
     const { data, error } = await supabase
       .from("userGames")
@@ -130,8 +121,6 @@ const AppProvider = ({ children }) => {
     console.log(`exiting unsave`);
   };
 
-  //   console.log(userGames);
-  //   console.log(userGames);
   return (
     <AppContext.Provider
       value={{
