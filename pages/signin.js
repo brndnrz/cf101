@@ -9,7 +9,7 @@ const SignIn = () => {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: "http://localhost:3000/profile",
+        emailRedirectTo: "https://cf101.vercel.app/profile",
       },
     });
 
