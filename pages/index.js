@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import FeatureCard from "../components/FeatureCard";
 import SmallGameCard from "../components/SmallGameCard";
-import { baseURL, headers } from "../utilities/functions";
+import { baseURL } from "../utilities/functions";
 
 export default function Home({ featuredGames, remainingGames }) {
   const [showAll, setShowAll] = useState(false);
@@ -60,7 +60,11 @@ export default function Home({ featuredGames, remainingGames }) {
 export async function getServerSideProps() {
   const res = await fetch(
     `${baseURL}games?seasonType=regular&year=2022&week=13&division=fbs`,
-    headers
+    {
+      headers: {
+        Authorization: process.env.AUTH,
+      },
+    }
   );
 
   const data = await res.json();

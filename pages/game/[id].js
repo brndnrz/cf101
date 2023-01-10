@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { conferences } from "../../utilities/conferences";
-import { baseURL, headers } from "../../utilities/functions";
+import { baseURL } from "../../utilities/functions";
 import SmallGameCard from "../../components/SmallGameCard";
 import { useGlobalContext } from "../../context";
 
@@ -364,7 +364,11 @@ export default GamePage;
 
 export async function getServerSideProps(context) {
   const id = context.params.id;
-  const res = await fetch(`${baseURL}games?id=${id}`, headers);
+  const res = await fetch(`${baseURL}games?id=${id}`, {
+    headers: {
+      Authorization: process.env.AUTH,
+    },
+  });
 
   const data = await res.json();
 
@@ -384,16 +388,26 @@ export async function getServerSideProps(context) {
 
   const [homeConRecordRes, awayConRecordRes, homeGamesRes, awayGamesRes] =
     await Promise.all([
-      fetch(
-        `${baseURL}records?conference=${home_conference}&year=${season}`,
-        headers
-      ),
-      fetch(
-        `${baseURL}records?conference=${away_conference}&year=${season}`,
-        headers
-      ),
-      fetch(`${baseURL}games/?team=${home_team}&year=${season}`, headers),
-      fetch(`${baseURL}games/?team=${away_team}&year=${season}`, headers),
+      fetch(`${baseURL}records?conference=${home_conference}&year=${season}`, {
+        headers: {
+          Authorization: process.env.AUTH,
+        },
+      }),
+      fetch(`${baseURL}records?conference=${away_conference}&year=${season}`, {
+        headers: {
+          Authorization: process.env.AUTH,
+        },
+      }),
+      fetch(`${baseURL}games/?team=${home_team}&year=${season}`, {
+        headers: {
+          Authorization: process.env.AUTH,
+        },
+      }),
+      fetch(`${baseURL}games/?team=${away_team}&year=${season}`, {
+        headers: {
+          Authorization: process.env.AUTH,
+        },
+      }),
     ]);
 
   const [homeConferenceTeams, awayConferenceTeams, homeGames, awayGames] =
