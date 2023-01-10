@@ -13,7 +13,7 @@ const Nav = () => {
         </Link>
       </div>
 
-      <div className="ml-auto text-center rounded-lg font-Oswald bg-zinc-800/20 ">
+      <div className="ml-auto text-center rounded-lg font-Oswald ">
         {session ? (
           <Link href="/profile">
             <div className="p-2 bg-[#f5f5f5] border-b-2 border-b-zinc-800/40 hover:border-2 hover:rounded-lg hover:border-green-600">
