@@ -5,7 +5,7 @@ const Nav = () => {
 
   return (
     <div className=" flex md:px-[30px] px-[15px] mt-[20px]">
-      <div className="">
+      <div className="mr-auto">
         <Link href="/">
           <h1 className="font-Oswald font-medium md:text-[32px] text-[24px] ">
             CF 101

@@ -4,6 +4,7 @@ import { conferences } from "../../utilities/conferences";
 import { baseURL } from "../../utilities/functions";
 import SmallGameCard from "../../components/SmallGameCard";
 import { useGlobalContext } from "../../context";
+import Link from "next/link";
 
 const GamePage = ({
   game,
@@ -30,7 +31,7 @@ const GamePage = ({
     home_line_scores,
     away_line_scores,
   } = game;
-  const { userGames, handleSave, handleUnSave } = useGlobalContext();
+  const { session, userGames, handleSave, handleUnSave } = useGlobalContext();
 
   const [showHome, setShowHome] = useState(true);
   const [showSaveButton, setShowSaveButton] = useState(null);
@@ -116,21 +117,35 @@ const GamePage = ({
       </div>
 
       <div className="mb-6 text-center font-Oswald">
-        {showSaveButton && (
+        {session === false ? (
+          <Link href="/signin">
+            <button className="bg-black text-white p-[10px] rounded-xl hover:bg-green-600">
+              Sign In To Save Game
+            </button>
+          </Link>
+        ) : (
+          ""
+        )}
+
+        {session && showSaveButton ? (
           <button
             onClick={() => handleSave(game)}
             className="text-white bg-green-600 p-[10px] rounded-xl hover:bg-black hover:p-[8px] "
           >
             Save Game
           </button>
+        ) : (
+          ""
         )}
-        {showUnSave && (
+        {session && showUnSave ? (
           <button
             onClick={() => handleUnSave(game)}
             className="text-white bg-black  p-[10px] rounded-xl hover:bg-red hover:p-[8px] "
           >
             UnSave Game
           </button>
+        ) : (
+          ""
         )}
       </div>
       <div className=" lg:flex">

@@ -28,6 +28,9 @@ const AppProvider = ({ children }) => {
     if (error) {
       console.log(error);
     } else {
+      setUser(null);
+      setSession(false);
+      setUserGames([]);
       router.push("/");
     }
   };
