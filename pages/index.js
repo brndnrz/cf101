@@ -28,6 +28,7 @@ export default function Home({ featuredGames, remainingGames }) {
             return <FeatureCard data={game} key={game.id} />;
           })}
         </section>
+
         <h1 className="font-Oswald ml-[30px] mt-[0px] mb-[16px] text-xl md:text-2xl">
           All Games
         </h1>

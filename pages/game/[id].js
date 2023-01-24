@@ -5,6 +5,7 @@ import { baseURL } from "../../utilities/functions";
 import SmallGameCard from "../../components/SmallGameCard";
 import { useGlobalContext } from "../../context";
 import Link from "next/link";
+import { con2000 } from "../../utilities/con2";
 
 const GamePage = ({
   game,
@@ -432,13 +433,26 @@ export async function getServerSideProps(context) {
       homeGamesRes.json(),
       awayGamesRes.json(),
     ]);
-  let away_logo = conferences
-    .find((conferences) => conferences.short_name === data[0].away_conference)
-    ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
 
-  let home_logo = conferences
-    .find((conferences) => conferences.short_name === data[0].home_conference)
-    ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
+  let away_logo, home_logo;
+
+  if (season === 2000) {
+    away_logo = con2000
+      .find((conferences) => conferences.name === data[0].away_conference)
+      ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
+
+    home_logo = con2000
+      .find((conferences) => conferences.name === data[0].home_conference)
+      ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
+  } else {
+    away_logo = conferences
+      .find((conferences) => conferences.short_name === data[0].away_conference)
+      ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
+
+    home_logo = conferences
+      .find((conferences) => conferences.short_name === data[0].home_conference)
+      ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
+  }
 
   let lastFourHome = homeGames.slice(-4);
   let lastFourAway = awayGames.slice(-4);
