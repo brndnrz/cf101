@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { conferences } from "../utilities/conferences";
+import { getLogo } from "../utilities/functions";
 
 const FeatureCard = ({ data }) => {
   const {
@@ -12,14 +12,12 @@ const FeatureCard = ({ data }) => {
     home_points,
     away_conference,
     home_conference,
+    season,
   } = data;
-  let away_logo = conferences
-    .find((conferences) => conferences.short_name === away_conference)
-    ?.teams.find((teams) => teams.name == away_team)?.logo;
 
-  let home_logo = conferences
-    .find((conferences) => conferences.short_name === home_conference)
-    ?.teams.find((teams) => teams.name === home_team)?.logo;
+  let away_logo = getLogo(season, away_conference, away_team);
+  let home_logo = getLogo(season, home_conference, home_team);
+
   return (
     <Link href={`/game/${id}`}>
       <div className=" ml-[30px] w-[250px]  h-[200px] p-4 shadow-2xl rounded-xl flex relative">

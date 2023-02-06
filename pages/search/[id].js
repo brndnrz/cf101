@@ -1,6 +1,6 @@
 import React from "react";
 import SmallGameCard from "../../components/SmallGameCard";
-import { baseURL } from "../../utilities/functions";
+import { baseURL, headers } from "../../utilities/functions";
 
 const SearchGames = ({ fbs, year, week }) => {
   return (
@@ -29,23 +29,14 @@ export async function getServerSideProps(context) {
 
   const res = await fetch(
     `${baseURL}games?seasonType=regular&year=${year}&week=${week}&division=fbs`,
-    {
-      headers: {
-        Authorization: process.env.AUTH,
-      },
-    }
+    headers
   );
-
   const data = await res.json();
-
   const fbs = data.filter((game) => {
     if (game.home_division === "fbs" && game.away_division === "fbs") {
       return game;
     }
   });
-
-  // const featuredGames = fbs.slice(0, 5);
-  // const remainingGames = fbs.slice(5);
   return {
     props: { fbs, year, week },
   };

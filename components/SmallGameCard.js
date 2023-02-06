@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { conferences } from "../utilities/conferences";
-import { con2000 } from "../utilities/con2";
+import { getLogo } from "../utilities/functions";
 
 const SmallGameCard = ({ data }) => {
   const {
@@ -16,24 +15,8 @@ const SmallGameCard = ({ data }) => {
     season,
   } = data;
 
-  let away_logo, home_logo;
-  if (season === 2000) {
-    away_logo = con2000
-      .find((conferences) => conferences.name === away_conference)
-      ?.teams.find((teams) => teams.name === away_team)?.logo;
-
-    home_logo = con2000
-      .find((conferences) => conferences.name === home_conference)
-      ?.teams.find((teams) => teams.name === home_team)?.logo;
-  } else {
-    away_logo = conferences
-      .find((conferences) => conferences.short_name === away_conference)
-      ?.teams.find((teams) => teams.name === away_team)?.logo;
-
-    home_logo = conferences
-      .find((conferences) => conferences.short_name === home_conference)
-      ?.teams.find((teams) => teams.name === home_team)?.logo;
-  }
+  let away_logo = getLogo(season, away_conference, away_team);
+  let home_logo = getLogo(season, home_conference, home_team);
 
   return (
     <Link href={`/game/${id}`}>

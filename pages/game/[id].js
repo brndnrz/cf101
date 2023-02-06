@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { conferences } from "../../utilities/conferences";
-import { baseURL } from "../../utilities/functions";
+import {
+  baseURL,
+  getConference,
+  getLogo,
+  headers,
+} from "../../utilities/functions";
 import SmallGameCard from "../../components/SmallGameCard";
 import { useGlobalContext } from "../../context";
 import Link from "next/link";
-import { con2000 } from "../../utilities/con2";
 
 const GamePage = ({
   game,
@@ -66,7 +69,7 @@ const GamePage = ({
     .join(" ");
 
   let fixed;
-  let length = home_line_scores.length;
+  let length = home_line_scores?.length;
   if (length > 4) {
     let adjustedWidth = 100 / (length + 1);
 
@@ -380,11 +383,7 @@ export default GamePage;
 
 export async function getServerSideProps(context) {
   const id = context.params.id;
-  const res = await fetch(`${baseURL}games?id=${id}`, {
-    headers: {
-      Authorization: process.env.AUTH,
-    },
-  });
+  const res = await fetch(`${baseURL}games?id=${id}`, headers);
 
   const data = await res.json();
 
@@ -394,36 +393,21 @@ export async function getServerSideProps(context) {
   const away_team = data[0].away_team;
   const season = data[0].season;
 
-  let home_conference = conferences.find(
-    (conferences) => conferences.short_name === homeConName
-  )?.abbreviation;
-
-  let away_conference = conferences.find(
-    (conferences) => conferences.short_name === awayConName
-  )?.abbreviation;
+  let home_conference = getConference(season, homeConName);
+  let away_conference = getConference(season, awayConName);
 
   const [homeConRecordRes, awayConRecordRes, homeGamesRes, awayGamesRes] =
     await Promise.all([
-      fetch(`${baseURL}records?conference=${home_conference}&year=${season}`, {
-        headers: {
-          Authorization: process.env.AUTH,
-        },
-      }),
-      fetch(`${baseURL}records?conference=${away_conference}&year=${season}`, {
-        headers: {
-          Authorization: process.env.AUTH,
-        },
-      }),
-      fetch(`${baseURL}games/?team=${home_team}&year=${season}`, {
-        headers: {
-          Authorization: process.env.AUTH,
-        },
-      }),
-      fetch(`${baseURL}games/?team=${away_team}&year=${season}`, {
-        headers: {
-          Authorization: process.env.AUTH,
-        },
-      }),
+      fetch(
+        `${baseURL}records?conference=${home_conference}&year=${season}`,
+        headers
+      ),
+      fetch(
+        `${baseURL}records?conference=${away_conference}&year=${season}`,
+        headers
+      ),
+      fetch(`${baseURL}games/?team=${home_team}&year=${season}`, headers),
+      fetch(`${baseURL}games/?team=${away_team}&year=${season}`, headers),
     ]);
 
   const [homeConferenceTeams, awayConferenceTeams, homeGames, awayGames] =
@@ -434,25 +418,28 @@ export async function getServerSideProps(context) {
       awayGamesRes.json(),
     ]);
 
-  let away_logo, home_logo;
+  let away_logo = getLogo(season, data[0].away_conference, data[0].away_team);
+  let home_logo = getLogo(season, data[0].home_conference, data[0].home_team);
 
-  if (season === 2000) {
-    away_logo = con2000
-      .find((conferences) => conferences.name === data[0].away_conference)
-      ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
+  // let away_logo, home_logo;
 
-    home_logo = con2000
-      .find((conferences) => conferences.name === data[0].home_conference)
-      ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
-  } else {
-    away_logo = conferences
-      .find((conferences) => conferences.short_name === data[0].away_conference)
-      ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
+  // if (season === 2000) {
+  //   away_logo = con2000
+  //     .find((conferences) => conferences.name === data[0].away_conference)
+  //     ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
 
-    home_logo = conferences
-      .find((conferences) => conferences.short_name === data[0].home_conference)
-      ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
-  }
+  //   home_logo = con2000
+  //     .find((conferences) => conferences.name === data[0].home_conference)
+  //     ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
+  // } else {
+  //   away_logo = conferences
+  //     .find((conferences) => conferences.short_name === data[0].away_conference)
+  //     ?.teams.find((teams) => teams.name === data[0].away_team)?.logo;
+
+  //   home_logo = conferences
+  //     .find((conferences) => conferences.short_name === data[0].home_conference)
+  //     ?.teams.find((teams) => teams.name === data[0].home_team)?.logo;
+  // }
 
   let lastFourHome = homeGames.slice(-4);
   let lastFourAway = awayGames.slice(-4);
