@@ -18,6 +18,10 @@ const SmallGameCard = ({ data }) => {
   let away_logo = getLogo(season, away_conference, away_team);
   let home_logo = getLogo(season, home_conference, home_team);
 
+  let cancelled;
+  if (home_points === null && away_points === null) {
+    cancelled = true;
+  }
   return (
     <Link href={`/game/${id}`}>
       <div className="relative flex items-center border-2  h-[80px] rounded-xl sm:h-[60px] px-[2px] lg:h-[75px] hover:border-none hover:bg-gray-900 hover:text-white">
@@ -31,7 +35,13 @@ const SmallGameCard = ({ data }) => {
           />
         </div>
         <div className="absolute px-2 text-xl font-medium backdrop-blur-sm top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] font-Oswald sm:text-lg md:text-xl lg:text-2xl">
-          {home_points} - {away_points}
+          {cancelled ? (
+            <p>Cancelled</p>
+          ) : (
+            <p>
+              {home_points} - {away_points}
+            </p>
+          )}
         </div>
         <div className="team2 w-[50%] h-auto flex justify-end">
           <Image

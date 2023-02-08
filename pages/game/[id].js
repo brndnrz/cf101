@@ -79,6 +79,10 @@ const GamePage = ({
     let adjustedWidth = 100 / 5;
     fixed = adjustedWidth.toFixed(2);
   }
+  let cancelled = false;
+  if (home_line_scores === null && away_line_scores === null) {
+    cancelled = true;
+  }
 
   return (
     <div className="">
@@ -105,7 +109,11 @@ const GamePage = ({
             ""
           )}
           <h3 className="text-4xl font-Oswald">
-            {home_points} - {away_points}{" "}
+            {cancelled ? (
+              <p className="">Cancelled</p>
+            ) : (
+              { home_points } - { away_points }
+            )}
           </h3>
         </div>
         <div className="flex flex-col items-center border-t-2 border-b-2 border-r-2 rounded-tr-xl rounded-br-xl">
@@ -166,18 +174,20 @@ const GamePage = ({
                 alt="Time"
                 className="mx-auto "
               />
-              {home_line_scores.map((quarter, idx) => {
-                return (
-                  <div
-                    className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]"
-                    key={Math.random(1134 * ((idx + 1) * 2))}
-                  >
-                    <h3 className="p-0 m-0 text-2xl text-center ">
-                      {idx >= 4 ? "OT" : `Q${idx + 1}`}
-                    </h3>
-                  </div>
-                );
-              })}
+              {cancelled
+                ? ""
+                : home_line_scores.map((quarter, idx) => {
+                    return (
+                      <div
+                        className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]"
+                        key={Math.random(1134 * ((idx + 1) * 2))}
+                      >
+                        <h3 className="p-0 m-0 text-2xl text-center ">
+                          {idx >= 4 ? "OT" : `Q${idx + 1}`}
+                        </h3>
+                      </div>
+                    );
+                  })}
               <div className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]">
                 <h3 className="text-2xl text-center">TOT</h3>
               </div>
@@ -190,16 +200,18 @@ const GamePage = ({
                 alt={home_team}
                 className="mx-auto"
               />
-              {home_line_scores.map((quarter, idx) => {
-                return (
-                  <div
-                    className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]"
-                    key={Math.random(1134 * ((idx + 1) * 4))}
-                  >
-                    <h3 className="text-2xl text-center ">{quarter}</h3>
-                  </div>
-                );
-              })}
+              {cancelled
+                ? ""
+                : home_line_scores?.map((quarter, idx) => {
+                    return (
+                      <div
+                        className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]"
+                        key={Math.random(1134 * ((idx + 1) * 4))}
+                      >
+                        <h3 className="text-2xl text-center ">{quarter}</h3>
+                      </div>
+                    );
+                  })}
               <div className="flex items-center justify-center border-2 border-y-0 w-[50px] sm:w-[60px]">
                 <h3 className="text-2xl font-bold font-Oswald">
                   {home_points}
@@ -214,16 +226,18 @@ const GamePage = ({
                 alt={away_team}
                 className="mx-auto"
               />
-              {away_line_scores.map((quarter, idx) => {
-                return (
-                  <div
-                    className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]"
-                    key={Math.random(1134 * idx)}
-                  >
-                    <h3 className="text-2xl text-center ">{quarter}</h3>
-                  </div>
-                );
-              })}
+              {cancelled
+                ? ""
+                : away_line_scores?.map((quarter, idx) => {
+                    return (
+                      <div
+                        className="flex items-center justify-center h-auto border-2 border-y-0 w-[50px] sm:w-[60px]"
+                        key={Math.random(1134 * idx)}
+                      >
+                        <h3 className="text-2xl text-center ">{quarter}</h3>
+                      </div>
+                    );
+                  })}
               <div className="flex items-center justify-center border-2 border-y-0  w-[50px] sm:w-[60px]">
                 <h3 className="text-2xl font-bold font-Oswald">
                   {away_points}
@@ -231,6 +245,7 @@ const GamePage = ({
               </div>
             </div>
           </div>
+
           <div className="w-full  h-auto mt-[30px] lg:mt-0  font-Oswald p-[20px]">
             <h3 className="">Recent Games</h3>
             <div className="grid grid-rows-2 gap-y-4">
