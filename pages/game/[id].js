@@ -112,7 +112,9 @@ const GamePage = ({
             {cancelled ? (
               <p className="">Cancelled</p>
             ) : (
-              { home_points } - { away_points }
+              <p>
+                {home_points} - {away_points}
+              </p>
             )}
           </h3>
         </div>
