@@ -10,12 +10,44 @@ export default function Home({ featuredGames, remainingGames }) {
   return (
     <div className="">
       <Head>
-        <title>CF 101</title>
+        <title>CF 101 | College Football Scores & Stats</title>
+        <meta name="title" content="CF 101 | College Football Scores & Stats" />
+
         <meta
           name="description"
           content="CF 101 is a comprehensive college football score website that offers expert insights on players, coaches, and conferences, and our upcoming transfer portal display keeps fans up to date on where their favorite players are going next. In addition, our live game stats, including real time scores, provide fans with updates on all the action. At CF 101, we are dedicated to providing the best college football coverage available."
         />
         <link rel="icon" href="/favicon.ico" />
+
+        <meta name="og:type" content="website" />
+        <meta name="og:url" content="https://cf101.vercel.app/" />
+        <meta
+          name="og:title"
+          content="CF 101 | College Football Scores & Stats"
+        />
+        <meta
+          name="og:description"
+          content="CF 101 is a comprehensive college football score website that offers expert insights on players, coaches, and conferences, and our upcoming transfer portal display keeps fans up to date on where their favorite players are going next. In addition, our live game stats, including real time scores, provide fans with updates on all the action. At CF 101, we are dedicated to providing the best college football coverage available."
+        />
+        <meta
+          name="og:image"
+          content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://cf101.vercel.app/" />
+        <meta
+          name="twitter:title"
+          content="CF 101 | College Football Scores & Stats"
+        />
+        <meta
+          name="twitter:description"
+          content="CF 101 is a comprehensive college football score website that offers expert insights on players, coaches, and conferences, and our upcoming transfer portal display keeps fans up to date on where their favorite players are going next. In addition, our live game stats, including real time scores, provide fans with updates on all the action. At CF 101, we are dedicated to providing the best college football coverage available."
+        />
+        <meta
+          name="twitter:image"
+          content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
+        />
       </Head>
 
       <main className="">
