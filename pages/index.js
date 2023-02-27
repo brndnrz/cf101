@@ -20,7 +20,7 @@ export default function Home({ featuredGames, remainingGames }) {
         <link rel="icon" href="/favicon.ico" />
 
         <meta name="og:type" content="website" />
-        <meta name="og:url" content="https://cf101.vercel.app/" />
+        <meta name="og:url" content="https://metatags.io/" />
         <meta
           name="og:title"
           content="CF 101 | College Football Scores & Stats"
@@ -35,7 +35,7 @@ export default function Home({ featuredGames, remainingGames }) {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://cf101.vercel.app/" />
+        <meta name="twitter:url" content="https://metatags.io/" />
         <meta
           name="twitter:title"
           content="CF 101 | College Football Scores & Stats"
