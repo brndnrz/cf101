@@ -21,8 +21,8 @@ const Profile = () => {
           >
             Sign Out
           </button>
-          <div className="w-full border-2 p-[30px] font-Oswald">
-            <h3 className="py-4 text-xl font-bold text-center text-white bg-black">
+          <div className="w-full border-2 p-[30px] font-Oswald ">
+            <h3 className="py-4 text-xl font-bold text-center text-white bg-black ">
               Your Saved Games:
             </h3>
             <div className="w-[85%] mx-auto px-[10px] py-[30px] grid gap-x-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

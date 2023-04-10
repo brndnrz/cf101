@@ -7,7 +7,7 @@ import { SlClose } from "react-icons/sl";
 import { useGlobalContext } from "../context";
 const Nav = () => {
   const router = useRouter();
-  const { user, session } = useGlobalContext();
+  const { user, userSession } = useGlobalContext();
   const [showMenu, setShowMenu] = useState(false);
 
   const handleSearch = () => {
@@ -38,7 +38,7 @@ const Nav = () => {
         </div>
 
         <div className="flex items-center ml-auto text-center rounded-lg font-Oswald">
-          {session ? (
+          {userSession ? (
             <>
               <button
                 onClick={() => setShowMenu(!showMenu)}
@@ -49,8 +49,8 @@ const Nav = () => {
               <Link href="/profile">
                 <div className="p-2 bg-[#f5f5f5] border-b-2 border-b-zinc-800/40 hover:border-2 hover:rounded-lg hover:border-green-600 ">
                   <h1 className="">Welcome Back</h1>
-                  {user ? (
-                    <p className="text-green-600">{user.email}</p>
+                  {userSession.user ? (
+                    <p className="text-green-600">{userSession.user.email}</p>
                   ) : (
                     <p className="text-green-600">CF 101 User</p>
                   )}

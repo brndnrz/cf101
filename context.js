@@ -8,18 +8,25 @@ const AppProvider = ({ children }) => {
   const router = useRouter();
 
   const [user, setUser] = useState(null);
-  const [session, setSession] = useState(false);
+  const [userSession, setUserSession] = useState(false);
   const [userGames, setUserGames] = useState([]);
   supabase.auth.onAuthStateChange((event, session) => {
-    if (event == "SIGNED_IN") {
-      setSession(session);
-      setUser(session.user);
-      console.log("SIGNED_IN", session);
-    }
-    if (event == "SIGNED_OUT") {
-      setSession(null);
-      setUser(null);
-      console.log("SIGNED_OUT", session);
+    // if (event == "SIGNED_IN") {
+    //   setSession(session);
+    //   setUser(session.user);
+    //   console.log("SIGNED_IN", session);
+    // }
+    // if (event == "SIGNED_OUT") {
+    //   setSession(null);
+    //   setUser(null);
+    //   console.log("SIGNED_OUT", session);
+    // }
+
+    console.log("onAuthStateChange", event, session);
+
+    if (session && session.user) {
+      supabase.auth.setSession(session);
+      setUserSession(session);
     }
   });
 
@@ -128,7 +135,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         signOut,
-        session,
+        // session,
+        userSession,
         user,
         userGames,
         handleSave,

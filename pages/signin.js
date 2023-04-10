@@ -25,12 +25,12 @@ const SignIn = () => {
     <>
       {submitted ? (
         <div className="px-[20px] py-[30px] font-Oswald">
-          <p className="mb-4 text-center">
+          <p className="mb-4 text-center md:text-xl lg:text-2xl">
             Please Check Your Email To Sign In To CF 101!
           </p>
         </div>
       ) : (
-        <div className="px-[20px] py-[30px] font-Oswald">
+        <div className="px-[20px] py-[30px] max-w-[800px] mx-auto  font-Oswald">
           <p className="mb-4 text-center">
             Sign in via magic link with your email below
           </p>
