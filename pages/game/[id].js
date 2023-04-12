@@ -9,6 +9,7 @@ import {
 import SmallGameCard from "../../components/SmallGameCard";
 import { useGlobalContext } from "../../context";
 import Link from "next/link";
+import { useSession } from "@supabase/auth-helpers-react";
 
 const GamePage = ({
   game,
@@ -35,7 +36,8 @@ const GamePage = ({
     home_line_scores,
     away_line_scores,
   } = game;
-  const { session, userGames, handleSave, handleUnSave } = useGlobalContext();
+  const { userGames, handleSave, handleUnSave } = useGlobalContext();
+  const session = useSession();
 
   const [showHome, setShowHome] = useState(true);
   const [showSaveButton, setShowSaveButton] = useState(null);

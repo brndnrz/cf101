@@ -1,10 +1,26 @@
 import Link from "next/link";
 import SmallGameCard from "../components/SmallGameCard";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
+
 import { useGlobalContext } from "../context";
 
 const Profile = () => {
-  const { session, user, userGames, signOut } = useGlobalContext();
-  console.log(userGames);
+  const { userGames } = useGlobalContext();
+  // console.log(userGames);
+  const session = useSession();
+  const supabase = useSupabaseClient();
+  const router = useRouter();
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.log(error);
+    } else {
+      router.push("/");
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center font-Oswald">
       {session ? (
@@ -12,7 +28,7 @@ const Profile = () => {
           <div className=" my-[30px] px-[30px] text-center">
             <h3 className="text-2xl lg:text-4xl">
               Welcome Back{" "}
-              <span className="text-green-600 ">{user?.email}</span>
+              <span className="text-green-600 ">{session.user?.email}</span>
             </h3>
           </div>
           <button

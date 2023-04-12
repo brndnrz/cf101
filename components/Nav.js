@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { SlClose } from "react-icons/sl";
-
+import { useSession } from "@supabase/auth-helpers-react";
 import { useGlobalContext } from "../context";
 const Nav = () => {
+  const session = useSession();
   const router = useRouter();
-  const { user, userSession } = useGlobalContext();
   const [showMenu, setShowMenu] = useState(false);
 
   const handleSearch = () => {
@@ -38,7 +38,7 @@ const Nav = () => {
         </div>
 
         <div className="flex items-center ml-auto text-center rounded-lg font-Oswald">
-          {userSession ? (
+          {session ? (
             <>
               <button
                 onClick={() => setShowMenu(!showMenu)}
@@ -49,8 +49,8 @@ const Nav = () => {
               <Link href="/profile">
                 <div className="p-2 bg-[#f5f5f5] border-b-2 border-b-zinc-800/40 hover:border-2 hover:rounded-lg hover:border-green-600 ">
                   <h1 className="">Welcome Back</h1>
-                  {userSession.user ? (
-                    <p className="text-green-600">{userSession.user.email}</p>
+                  {session.user ? (
+                    <p className="text-green-600">{session.user.email}</p>
                   ) : (
                     <p className="text-green-600">CF 101 User</p>
                   )}

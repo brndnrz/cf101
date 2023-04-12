@@ -1,46 +1,13 @@
 import React, { useState, useContext } from "react";
-import { useRouter } from "next/router";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
-import { supabase } from "./supa";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const router = useRouter();
-
-  const [user, setUser] = useState(null);
-  const [userSession, setUserSession] = useState(false);
   const [userGames, setUserGames] = useState([]);
-  supabase.auth.onAuthStateChange((event, session) => {
-    // if (event == "SIGNED_IN") {
-    //   setSession(session);
-    //   setUser(session.user);
-    //   console.log("SIGNED_IN", session);
-    // }
-    // if (event == "SIGNED_OUT") {
-    //   setSession(null);
-    //   setUser(null);
-    //   console.log("SIGNED_OUT", session);
-    // }
+  const session = useSession();
 
-    console.log("onAuthStateChange", event, session);
-
-    if (session && session.user) {
-      supabase.auth.setSession(session);
-      setUserSession(session);
-    }
-  });
-
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.log(error);
-    } else {
-      setUser(null);
-      setSession(false);
-      setUserGames([]);
-      router.push("/");
-    }
-  };
+  const supabase = useSupabaseClient();
 
   const handleSave = async (game) => {
     console.log(`making the call`);
@@ -86,7 +53,7 @@ const AppProvider = ({ children }) => {
           venue: venue,
           week: week,
         },
-        userKey: user.id,
+        userKey: session.user.id,
       })
       .select();
 
@@ -134,10 +101,6 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        signOut,
-        // session,
-        userSession,
-        user,
         userGames,
         handleSave,
         handleUnSave,

@@ -1,15 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import { supabase } from "../supa";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  // const session = useSession();
+  const supabase = useSupabaseClient();
   const handleLogin = async (email) => {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: email,
       options: {
         emailRedirectTo: "https://cf101.vercel.app/profile",
+        // emailRedirectTo: "http://localhost:3000/",
       },
     });
 
