@@ -24,7 +24,7 @@ const SmallGameCard = ({ data }) => {
   }
   return (
     <Link href={`/game/${id}`}>
-      <div className="relative flex items-center border-2  h-[80px] rounded-xl sm:h-[60px] px-[2px] lg:h-[75px] hover:border-none hover:bg-gray-900 hover:text-white">
+      <div className="relative flex items-center  border-2  h-[80px] rounded-xl sm:h-[60px] px-[2px] lg:h-[75px] hover:border-none hover:bg-gray-900 hover:text-white">
         <div className="team1 w-[50%] h-auto flex justify-start">
           <Image
             src={home_logo}

@@ -20,7 +20,7 @@ const FeatureCard = ({ data }) => {
 
   return (
     <Link href={`/game/${id}`}>
-      <div className=" ml-[30px] w-[250px]  h-[200px] p-4 shadow-2xl rounded-xl flex relative">
+      <div className=" ml-[30px] w-[250px]   h-[200px] p-4 shadow-2xl rounded-xl flex relative">
         <div className=" w-[50%] team1 flex justify-start">
           <Image
             src={away_logo}
