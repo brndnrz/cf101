@@ -1399,6 +1399,169 @@ export const teamData = [
           national_championship_coaches: ["Ray Eliot"],
         },
       },
+      {
+        id: 3,
+        team: "Indiana Hoosiers football",
+        program:
+          "The Indiana Hoosiers football program represents Indiana University Bloomington in NCAA Division I Football Bowl Subdivision (FBS) college football and in the Big Ten Conference. The Hoosiers have played their home games at Memorial Stadium since 1960.",
+        division: {
+          conference: "Big Ten Conference",
+          division: "East Division",
+        },
+        head_coach: {
+          name: "Tom Allen",
+          start_year: 2017,
+        },
+        national_championships: {
+          total: 0,
+          officially_claimed: 0,
+        },
+        hall_of_fame_coach: {
+          name: None,
+        },
+        heisman_trophy_winners: [],
+        victories: {
+          official: 612,
+          vacated: 0,
+          forfeited: 0,
+        },
+        conference_championships: {
+          total: 3,
+          big_ten: 3,
+        },
+        postseason_bowl_appearances: {
+          total: 33,
+        },
+        ten_win_seasons: {
+          total: 7,
+        },
+        bowl_victories: {
+          total: 13,
+        },
+        division_titles: {
+          total: 3,
+          big_ten: 3,
+        },
+        big_ten_championship_game_appearances: {
+          total: 0,
+          big_ten: 0,
+        },
+        all_time_final_ap_poll_appearances: {
+          rank: 50,
+          total: 75,
+        },
+        home_stadium: {
+          name: "Memorial Stadium",
+          location: "Bloomington, Indiana",
+          capacity: 60000,
+          rank: {
+            World: 80,
+            US: 46,
+          },
+        },
+        head_coaching_history: {
+          total: 28,
+          bowl_game_coaches: [
+            "Robert L. Bob Zuppke",
+            "Earl Dutch Meyer",
+            "Joe Tiller",
+            "Kevin Wilson",
+            "Tom Allen",
+          ],
+          conference_championship_coaches: [
+            "Robert L. Bob Zuppke",
+            "Earl Dutch Meyer",
+            "Joe Tiller",
+            "Kevin Wilson",
+            "Tom Allen",
+          ],
+          national_championship_coaches: [],
+        },
+      },
     ],
   },
 ];
+
+/*
+
+{
+  id: 2,
+  team: "Illinois Fighting Illini football",
+  program:
+    "The Illinois Fighting Illini football program represents the University of Illinois at Urbana–Champaign in the sport of American football.",
+  division: {
+    conference: "Big Ten Conference",
+    division: "West Division",
+  },
+  head_coach: {
+    name: "Bret Bielema",
+    start_year: 2021,
+  },
+  national_championships: {
+    total: 1,
+    officially_claimed: 1914,
+  },
+  hall_of_fame_coach: {
+    name: None,
+  },
+  heisman_trophy_winners: [],
+  victories: {
+    official: 602,
+    vacated: 0,
+    forfeited: 0,
+  },
+  conference_championships: {
+    total: 4,
+    big_ten: 4,
+  },
+  postseason_bowl_appearances: {
+    total: 41,
+  },
+  ten_win_seasons: {
+    total: 13,
+  },
+  bowl_victories: {
+    total: 17,
+  },
+  division_titles: {
+    total: 4,
+    big_ten: 4,
+  },
+  big_ten_championship_game_appearances: {
+    total: 0,
+    big_ten: 0,
+  },
+  all_time_final_ap_poll_appearances: {
+    rank: 50,
+    total: 75,
+  },
+  home_stadium: {
+    name: "Memorial Stadium",
+    location: "Champaign, Illinois",
+    capacity: 60516,
+    rank: {
+      World: 80,
+      US: 46,
+    },
+  },
+  head_coaching_history: {
+    total: 39,
+    bowl_game_coaches: [
+      "Ray Eliot",
+      "Mike White",
+      "Ron Zook",
+      "Bret Bielema",
+    ],
+    conference_championship_coaches: [
+      "Ray Eliot",
+      "Mike White",
+      "Ron Zook",
+      "Bret Bielema",
+    ],
+    national_championship_coaches: ["Ray Eliot"],
+  },
+},
+
+Please provide the relevant information for the 'Indiana Hoosiers football' in the format above 
+
+*/
